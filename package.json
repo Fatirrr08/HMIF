@@ -2,15 +2,19 @@
   "name": "hmif-website",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://Fatirrr08.github.io/HMIF",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
+    "axios": "^1.13.6",
     "clsx": "^2.1.1",
     "framer-motion": "^12.35.0",
     "react": "^19.2.0",
@@ -28,6 +32,7 @@
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
+    "gh-pages": "^6.3.0",
     "globals": "^16.5.0",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.1",

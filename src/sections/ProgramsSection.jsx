@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { programsData } from '../data/programs';
+// import axios from 'axios'; // Removed for mock data
 import SectionHeader from '../components/SectionHeader';
 import AnimatedSection from '../components/AnimatedSection';
 import { FaCalendarAlt } from 'react-icons/fa';
 
+import { programsData as mockProgramsData } from '../data/mockData';
+
 const ProgramsSection = () => {
+  const [programsData, setProgramsData] = useState(null);
+
+  useEffect(() => {
+    // using mock data for github pages deployment
+    setProgramsData(mockProgramsData);
+  }, []);
+
+  if (!programsData) {
+    return (
+      <AnimatedSection id="programs" className="bg-[#050505] relative overflow-hidden bg-pattern-grid flex justify-center py-20">
+        <div className="text-white">Loading...</div>
+      </AnimatedSection>
+    );
+  }
+
   return (
     <AnimatedSection id="programs" className="bg-[#050505] relative overflow-hidden bg-pattern-grid">
       <div className="absolute inset-0 bg-[#050505]/95 z-0" />
@@ -34,13 +51,13 @@ const ProgramsSection = () => {
               </div>
             </div>
             
-              <div className="p-8 flex-1 flex flex-col relative z-10">
-                <div className="flex items-center gap-3 text-gray-400 text-sm mb-5 font-medium tracking-wide">
+              <div className="p-5 sm:p-8 flex-1 flex flex-col relative z-10">
+                <div className="flex items-center gap-3 text-gray-400 text-sm mb-4 sm:mb-5 font-medium tracking-wide">
                   <FaCalendarAlt className="text-orange-400" />
                   <span className="uppercase">{program.date}</span>
                 </div>
                 
-                <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-astravia group-hover:to-orange-400 transition-colors">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-astravia group-hover:to-orange-400 transition-colors">
                   {program.name}
                 </h4>
                 

@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { galleryData } from '../data/gallery';
+// import axios from 'axios'; // Removed for mock data
 import SectionHeader from '../components/SectionHeader';
 import AnimatedSection from '../components/AnimatedSection';
 
+import { galleryData as mockGalleryData } from '../data/mockData';
+
 const GallerySection = () => {
+  const [galleryData, setGalleryData] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    // using mock data for github pages deployment
+    setGalleryData(mockGalleryData);
+  }, []);
+
+  if (!galleryData) {
+    return (
+      <AnimatedSection id="gallery" className="bg-black flex justify-center py-20">
+        <div className="text-white">Loading...</div>
+      </AnimatedSection>
+    );
+  }
 
   return (
     <AnimatedSection id="gallery" className="bg-black">

@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { newsData } from '../data/news';
+// import axios from 'axios'; // Removed for mock data
 import SectionHeader from '../components/SectionHeader';
 import AnimatedSection from '../components/AnimatedSection';
 
+import { newsData as mockNewsData } from '../data/mockData';
+
 const NewsSection = () => {
+  const [newsData, setNewsData] = useState(null);
+
+  useEffect(() => {
+    // using mock data for github pages deployment
+    setNewsData(mockNewsData);
+  }, []);
+
+  if (!newsData) {
+    return (
+      <AnimatedSection id="news" className="bg-[#050505] relative flex justify-center py-20">
+        <div className="text-white">Loading...</div>
+      </AnimatedSection>
+    );
+  }
+
   return (
     <AnimatedSection id="news" className="bg-[#050505] relative">
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-astravia/5 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
